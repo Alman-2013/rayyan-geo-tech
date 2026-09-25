@@ -153,6 +153,39 @@ const staff = [
   ["Draftsman (CAD)", "4"],
 ];
 
+const whyChooseRGT = [
+  {
+    icon: Clock3,
+    title: "14+ Years Experience",
+    text: "Established surveying experience since 2012.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Mines & Geology",
+    text: "Empanelled for mining and geology-related survey work.",
+  },
+  {
+    icon: Users,
+    title: "Experienced Team",
+    text: "Surveyors, engineers, drafting professionals and field staff.",
+  },
+  {
+    icon: Radar,
+    title: "Modern Technology",
+    text: "DGPS, Total Station, UAV, LiDAR, GIS and digital workflows.",
+  },
+  {
+    icon: Globe2,
+    title: "Pan-India Capability",
+    text: "Project capability across locations beyond Jharkhand.",
+  },
+  {
+    icon: CheckCircle2,
+    title: "Project-Ready Deliverables",
+    text: "Accurate field information prepared for engineering and planning.",
+  },
+];
+
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -290,6 +323,7 @@ export default function Home() {
             {[
               ["Home", "#home"],
               ["About", "#about"],
+              ["Why RGT", "#why-rgt"],
               ["Services", "#services"],
               ["LiDAR", "#lidar"],
               ["Projects", "#projects"],
@@ -330,6 +364,7 @@ export default function Home() {
               {[
                 ["Home", "#home"],
                 ["About", "#about"],
+                ["Why RGT", "#why-rgt"],
                 ["Services", "#services"],
                 ["LiDAR", "#lidar"],
                 ["Projects", "#projects"],
@@ -382,7 +417,9 @@ export default function Home() {
 
             <h1 className="text-5xl font-black leading-[1.03] tracking-tight sm:text-6xl lg:text-7xl">
               Precision for a{" "}
-              <span className="text-[#b5e76d]">Better Tomorrow</span>
+              <span className="text-[#b5e76d]">
+                Better Tomorrow
+              </span>
             </h1>
 
             <p className="mt-7 max-w-2xl text-lg leading-8 text-white/75">
@@ -459,9 +496,14 @@ export default function Home() {
                   key={item.title}
                   className="rounded-3xl border border-white/15 bg-white/10 p-6 text-white backdrop-blur-xl"
                 >
-                  <Icon className="mb-5 text-[#b5e76d]" size={30} />
+                  <Icon
+                    className="mb-5 text-[#b5e76d]"
+                    size={30}
+                  />
 
-                  <h3 className="font-black">{item.title}</h3>
+                  <h3 className="font-black">
+                    {item.title}
+                  </h3>
 
                   <p className="mt-2 text-sm leading-6 text-white/60">
                     {item.text}
@@ -545,8 +587,62 @@ export default function Home() {
         </div>
       </section>
 
+      {/* WHY CHOOSE RGT */}
+      <section
+        id="why-rgt"
+        className="bg-[#eef2ed] px-5 py-24 lg:px-8"
+      >
+        <div className="mx-auto max-w-7xl">
+          <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+            <div>
+              <div className="text-sm font-black uppercase tracking-[0.2em] text-[#26724e]">
+                Why Choose RGT
+              </div>
+
+              <h2 className="mt-3 text-4xl font-black tracking-tight text-[#173a29] sm:text-5xl">
+                Experience You Can Build On
+              </h2>
+
+              <p className="mt-5 max-w-xl leading-8 text-[#69736c]">
+                RGT combines experienced surveying professionals, modern
+                equipment and practical field knowledge to support demanding
+                mining, infrastructure, land and engineering projects.
+              </p>
+            </div>
+
+            <div className="grid gap-4 sm:grid-cols-2">
+              {whyChooseRGT.map((item) => {
+                const Icon = item.icon;
+
+                return (
+                  <div
+                    key={item.title}
+                    className="group rounded-3xl bg-white p-6 shadow-sm ring-1 ring-black/5 transition duration-300 hover:-translate-y-1 hover:shadow-lg"
+                  >
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#dfeede] text-[#26724e] transition group-hover:bg-[#123e2c] group-hover:text-[#b5e76d]">
+                      <Icon size={22} />
+                    </div>
+
+                    <h3 className="mt-5 font-black text-[#173a29]">
+                      {item.title}
+                    </h3>
+
+                    <p className="mt-2 text-sm leading-6 text-[#69736c]">
+                      {item.text}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* SERVICES */}
-      <section id="services" className="bg-white px-5 py-24 lg:px-8">
+      <section
+        id="services"
+        className="bg-white px-5 py-24 lg:px-8"
+      >
         <div className="mx-auto max-w-7xl">
           <div className="max-w-2xl">
             <div className="text-sm font-black uppercase tracking-[0.2em] text-[#26724e]">
@@ -648,7 +744,10 @@ export default function Home() {
       </section>
 
       {/* PROJECTS */}
-      <section id="projects" className="bg-[#eef2ed] px-5 py-24 lg:px-8">
+      <section
+        id="projects"
+        className="bg-[#eef2ed] px-5 py-24 lg:px-8"
+      >
         <div className="mx-auto max-w-7xl">
           <div className="flex flex-col justify-between gap-5 md:flex-row md:items-end">
             <div>
@@ -736,7 +835,10 @@ export default function Home() {
       </section>
 
       {/* TECHNOLOGY */}
-      <section id="technology" className="px-5 py-24 lg:px-8">
+      <section
+        id="technology"
+        className="px-5 py-24 lg:px-8"
+      >
         <div className="mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-2">
           <div>
             <div className="text-sm font-black uppercase tracking-[0.2em] text-[#26724e]">
@@ -775,7 +877,10 @@ export default function Home() {
       </section>
 
       {/* TEAM */}
-      <section id="team" className="bg-white px-5 py-24 lg:px-8">
+      <section
+        id="team"
+        className="bg-white px-5 py-24 lg:px-8"
+      >
         <div className="mx-auto max-w-7xl">
           <div className="max-w-2xl">
             <div className="text-sm font-black uppercase tracking-[0.2em] text-[#26724e]">
@@ -839,7 +944,10 @@ export default function Home() {
       </section>
 
       {/* CLIENTS */}
-      <section id="clients" className="px-5 py-24 lg:px-8">
+      <section
+        id="clients"
+        className="px-5 py-24 lg:px-8"
+      >
         <div className="mx-auto max-w-7xl">
           <div className="text-center">
             <div className="text-sm font-black uppercase tracking-[0.2em] text-[#26724e]">
@@ -950,6 +1058,33 @@ export default function Home() {
                     <br />
                     Giridih, Jharkhand
                   </div>
+                </div>
+              </div>
+
+              {/* GOOGLE MAP */}
+              <div className="mt-5 overflow-hidden rounded-3xl border border-white/10 bg-white p-2 shadow-2xl">
+                <div className="relative overflow-hidden rounded-2xl">
+                  <iframe
+                    title="RGT Office Location on Google Maps"
+                    src="https://www.google.com/maps?q=Opposite+Mohanpur+Church,+Near+Nehru+Yuva+Kendra,+Giridih,+Jharkhand&output=embed"
+                    className="h-[300px] w-full border-0 sm:h-[340px]"
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
+
+                  <a
+                    href="https://www.google.com/maps/search/?api=1&query=Opposite+Mohanpur+Church,+Near+Nehru+Yuva+Kendra,+Giridih,+Jharkhand"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-xl bg-white px-4 py-2.5 text-sm font-black text-[#173a29] shadow-lg transition hover:-translate-y-0.5 hover:bg-[#f4f7f2]"
+                  >
+                    <MapPin
+                      size={16}
+                      className="text-[#d92d2d]"
+                    />
+                    Open in Maps
+                    <ArrowRight size={15} />
+                  </a>
                 </div>
               </div>
             </div>
@@ -1230,6 +1365,13 @@ export default function Home() {
               </a>
 
               <a
+                href="#why-rgt"
+                className="hover:text-[#b5e76d]"
+              >
+                Why RGT
+              </a>
+
+              <a
                 href="#services"
                 className="hover:text-[#b5e76d]"
               >
@@ -1255,6 +1397,13 @@ export default function Home() {
                 className="hover:text-[#b5e76d]"
               >
                 Team
+              </a>
+
+              <a
+                href="#clients"
+                className="hover:text-[#b5e76d]"
+              >
+                Clients
               </a>
 
               <a
