@@ -4,6 +4,7 @@ import { FormEvent, useState } from "react";
 import {
   ArrowRight,
   CheckCircle2,
+  ChevronDown,
   ChevronRight,
   CircleCheck,
   Clock3,
@@ -29,6 +30,28 @@ import {
 
 const PHONE = "089 69 34 1822";
 const EMAIL = "rgtdronesurvey@gmail.com";
+
+const mainNavigation = [
+  ["Home", "#home"],
+  ["About", "#about"],
+  ["Services", "#services"],
+  ["LiDAR", "#lidar"],
+  ["Projects", "#projects"],
+  ["Technology", "#technology"],
+  ["Team", "#team"],
+  ["Clients", "#clients"],
+];
+
+const moreNavigation = [
+  ["Why RGT", "#why-rgt"],
+  ["Our Process", "#process"],
+  ["Industries We Serve", "#industries"],
+  ["Equipment & Capabilities", "#equipment"],
+  ["Project Statistics", "#statistics"],
+  ["Certifications & Empanelments", "#certifications"],
+  ["FAQ", "#faq"],
+  ["Contact / Google Maps", "#contact"],
+];
 
 const clientLogos = [
   { name: "Government of Jharkhand", src: "/clients/govt-of-jharkhand.jpg" },
@@ -190,7 +213,7 @@ const processSteps = [
   {
     number: "01",
     title: "Requirement",
-    text: "Understand your project, survey requirement, location, scope and expected deliverables.",
+    text: "Understand the project, location, scope and expected deliverables.",
     icon: Compass,
   },
   {
@@ -202,25 +225,113 @@ const processSteps = [
   {
     number: "03",
     title: "Field Survey",
-    text: "Our field team collects accurate project data using appropriate survey technology.",
+    text: "Collect accurate project data using appropriate survey technology.",
     icon: Ruler,
   },
   {
     number: "04",
     title: "Data Processing",
-    text: "Collected information is processed through surveying, CAD, GIS and digital workflows.",
+    text: "Process information through surveying, CAD, GIS and digital workflows.",
     icon: Database,
   },
   {
     number: "05",
     title: "Final Deliverables",
-    text: "Project-ready maps, drawings, data and documentation are prepared according to the requirement.",
+    text: "Prepare project-ready maps, drawings, data and documentation.",
     icon: CheckCircle2,
+  },
+];
+
+const industries = [
+  {
+    icon: Mountain,
+    title: "Mining & Minerals",
+    text: "Surveying support for mining, quarry and mineral-related projects.",
+  },
+  {
+    icon: Map,
+    title: "Roads & Highways",
+    text: "Alignment, topographical and construction survey requirements.",
+  },
+  {
+    icon: Globe2,
+    title: "Infrastructure",
+    text: "Geospatial data for infrastructure and engineering development.",
+  },
+  {
+    icon: Database,
+    title: "Water Resources",
+    text: "Canal, reservoir, irrigation and related survey work.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Forest & Environment",
+    text: "Surveying and documentation for forest clearance requirements.",
+  },
+  {
+    icon: Smartphone,
+    title: "Land Development",
+    text: "Land, cadastral, boundary and development surveys.",
+  },
+  {
+    icon: Radar,
+    title: "Power Projects",
+    text: "Surveying support for power and utility project requirements.",
+  },
+  {
+    icon: DraftingCompass,
+    title: "Engineering Projects",
+    text: "Survey data and CAD/GIS deliverables for engineering teams.",
+  },
+];
+
+const equipment = [
+  "Total Station",
+  "DGPS",
+  "Auto Level",
+  "GPS",
+  "UAV / Drone",
+  "LiDAR",
+  "High-End Survey Computers",
+  "Scanners & Plotters",
+  "Agisoft Metashape",
+  "BricsCAD",
+  "Global Mapper",
+  "SurveyCAD",
+];
+
+const faqs = [
+  {
+    question: "What types of surveys does RGT provide?",
+    answer:
+      "RGT provides surveying services including topographical surveys, DGPS surveys, mining surveys, road and alignment surveys, cadastral and land surveys, drone/UAV surveys, GIS work, LiDAR-related work and CAD documentation.",
+  },
+  {
+    question: "Does RGT undertake mining survey work?",
+    answer:
+      "Yes. RGT provides survey solutions for mining and geology-related project requirements and is listed as empanelled with Mines & Geology.",
+  },
+  {
+    question: "Does RGT provide drone surveying?",
+    answer:
+      "Yes. Drone/UAV surveying and aerial mapping are among the technologies and services used by RGT.",
+  },
+  {
+    question: "Where does RGT operate?",
+    answer:
+      "RGT is headquartered in Giridih, Jharkhand and has project capability beyond Jharkhand, including Pan-India project work.",
+  },
+  {
+    question: "How can I request a survey quotation?",
+    answer:
+      "You can use the enquiry form on this website or contact RGT directly by phone or email with your project location, survey requirement and project details.",
   },
 ];
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [moreOpen, setMoreOpen] = useState(false);
+  const [faqOpen, setFaqOpen] = useState<number | null>(null);
 
   const [form, setForm] = useState({
     name: "",
@@ -280,8 +391,6 @@ export default function Home() {
         details: "",
       });
     } catch (err) {
-      console.error("ENQUIRY ERROR:", err);
-
       setError(
         err instanceof Error
           ? err.message
@@ -292,138 +401,229 @@ export default function Home() {
     }
   }
 
+  function closeMore() {
+    setMoreOpen(false);
+  }
+
   return (
     <main className="min-h-screen bg-[#f7f8f5] text-[#17231d]">
 
       {/* TOP BAR */}
-      <div className="hidden bg-[#103c2b] px-6 py-3 text-sm text-white lg:block">
-        <div className="mx-auto flex max-w-7xl items-center justify-between">
+      <div className="hidden bg-[#103c2b] lg:block">
+        <div className="mx-auto flex max-w-[1500px] items-center justify-between px-8 py-2.5 text-[12px] text-white">
           <div className="flex items-center gap-6">
             <span className="flex items-center gap-2">
-              <MapPin size={15} />
+              <MapPin size={13} />
               Giridih, Jharkhand
             </span>
 
             <a
               href={`tel:${PHONE.replace(/\s/g, "")}`}
-              className="flex items-center gap-2 hover:text-[#a9d96f]"
+              className="flex items-center gap-2 transition hover:text-[#b5e76d]"
             >
-              <Phone size={15} />
+              <Phone size={13} />
               {PHONE}
             </a>
 
             <a
               href={`mailto:${EMAIL}`}
-              className="flex items-center gap-2 hover:text-[#a9d96f]"
+              className="flex items-center gap-2 transition hover:text-[#b5e76d]"
             >
-              <Mail size={15} />
+              <Mail size={13} />
               {EMAIL}
             </a>
           </div>
 
-          <div className="text-xs uppercase tracking-[0.2em] text-[#c9dfc5]">
+          <div className="font-semibold uppercase tracking-[0.18em] text-white/65">
             Surveying · GIS · Mining · Geospatial Solutions
           </div>
         </div>
       </div>
 
       {/* NAVBAR */}
-      <header className="sticky top-0 z-50 border-b border-black/5 bg-white/95 backdrop-blur">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
-          <a href="#home" className="flex items-center gap-3">
-            <img
-              src="/rgt-logo.png"
-              alt="Rayyan Geo Tech"
-              className="h-14 w-14 object-contain"
-            />
+      <header className="sticky top-0 z-50 border-b border-[#e8ece7] bg-white/95 shadow-[0_4px_25px_rgba(0,0,0,0.04)] backdrop-blur-xl">
+        <div className="mx-auto flex min-h-[88px] max-w-[1500px] items-center justify-between gap-5 px-5 lg:px-8">
 
-            <div>
-              <div className="text-lg font-black tracking-tight text-[#123e2c]">
-                RAYYAN GEO TECH
+          {/* LOGO */}
+          <a
+            href="#home"
+            className="group flex shrink-0 items-center gap-3"
+          >
+            <div className="flex h-[58px] w-[58px] items-center justify-center overflow-hidden rounded-full bg-white">
+              <img
+                src="/rgt-logo.png"
+                alt="Rayyan Geo Tech"
+                className="h-full w-full object-contain transition duration-300 group-hover:scale-105"
+              />
+            </div>
+
+            <div className="hidden sm:block">
+              <div className="text-[18px] font-black leading-tight tracking-tight text-[#123e2c]">
+                RAYYAN GEO
+                <br />
+                TECH
               </div>
 
-              <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#6b766f]">
+              <div className="mt-1 text-[9px] font-bold uppercase tracking-[0.25em] text-[#66726b]">
                 Surveying Solution
               </div>
 
-              <div className="mt-0.5 text-[10px] text-[#7a837d]">
+              <div className="mt-0.5 text-[10px] text-[#89918c]">
                 Giridih, Jharkhand
               </div>
             </div>
           </a>
 
-          <nav className="hidden items-center gap-7 lg:flex">
-            {[
-              ["Home", "#home"],
-              ["About", "#about"],
-              ["Why RGT", "#why-rgt"],
-              ["Process", "#process"],
-              ["Services", "#services"],
-              ["LiDAR", "#lidar"],
-              ["Projects", "#projects"],
-              ["Technology", "#technology"],
-              ["Team", "#team"],
-              ["Clients", "#clients"],
-              ["Contact", "#contact"],
-            ].map(([label, href]) => (
+          {/* MAIN NAV */}
+          <nav className="hidden items-center gap-1 xl:flex">
+            {mainNavigation.map(([label, href]) => (
               <a
                 key={label}
                 href={href}
-                className="text-sm font-semibold text-[#4c5851] transition hover:text-[#1b6b48]"
+                className="group relative rounded-full px-3 py-2.5 text-[13px] font-bold text-[#536058] transition hover:bg-[#f5f8f4] hover:text-[#1d704c]"
               >
                 {label}
+
+                <span className="absolute bottom-1 left-1/2 h-[2px] w-0 -translate-x-1/2 rounded-full bg-[#1d704c] transition-all duration-200 group-hover:w-5" />
               </a>
             ))}
 
-            <a
-              href="#contact"
-              className="rounded-full bg-[#1d704c] px-5 py-3 text-sm font-bold text-white shadow-lg shadow-[#1d704c]/15 transition hover:-translate-y-0.5 hover:bg-[#155a3c]"
-            >
-              Request a Survey
-            </a>
+            {/* MORE DROPDOWN */}
+            <div className="relative">
+              <button
+                type="button"
+                onClick={() => setMoreOpen((value) => !value)}
+                className={`group flex items-center gap-2 rounded-full px-3.5 py-2.5 text-[13px] font-bold transition ${
+                  moreOpen
+                    ? "bg-[#eef5ef] text-[#1d704c]"
+                    : "text-[#536058] hover:bg-[#f5f8f4] hover:text-[#1d704c]"
+                }`}
+              >
+                More
+
+                <ChevronDown
+                  size={15}
+                  className={`transition-transform duration-200 ${
+                    moreOpen ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
+
+              {moreOpen && (
+                <>
+                  <div
+                    className="fixed inset-0 z-[-1]"
+                    onClick={closeMore}
+                  />
+
+                  <div className="absolute right-0 top-[calc(100%+14px)] z-50 w-[310px] overflow-hidden rounded-2xl border border-[#e2e8e1] bg-white p-2 shadow-[0_20px_60px_rgba(18,62,44,0.16)]">
+
+                    <div className="px-4 pb-2 pt-3">
+                      <div className="text-[10px] font-black uppercase tracking-[0.2em] text-[#8a958d]">
+                        Explore RGT
+                      </div>
+                    </div>
+
+                    {moreNavigation.map(([label, href]) => (
+                      <a
+                        key={label}
+                        href={href}
+                        onClick={closeMore}
+                        className="group flex items-center justify-between rounded-xl px-4 py-3 text-sm font-bold text-[#425048] transition hover:bg-[#f0f6f0] hover:text-[#1d704c]"
+                      >
+                        <span>{label}</span>
+
+                        <ChevronRight
+                          size={16}
+                          className="text-[#9aa49d] transition group-hover:translate-x-1 group-hover:text-[#1d704c]"
+                        />
+                      </a>
+                    ))}
+                  </div>
+                </>
+              )}
+            </div>
           </nav>
 
+          {/* CTA */}
+          <a
+            href="#contact"
+            className="hidden shrink-0 items-center gap-2 rounded-full bg-[#1d704c] px-5 py-3.5 text-sm font-black text-white shadow-[0_8px_25px_rgba(29,112,76,0.18)] transition hover:-translate-y-0.5 hover:bg-[#155a3c] xl:flex"
+          >
+            Request a Survey
+            <ArrowRight size={16} />
+          </a>
+
+          {/* MOBILE */}
           <button
             onClick={() => setMenuOpen((value) => !value)}
-            className="rounded-xl border border-black/10 p-2 lg:hidden"
+            className="rounded-xl border border-[#dfe5df] bg-[#f7f9f6] p-2.5 text-[#173a29] xl:hidden"
             aria-label="Open menu"
           >
-            {menuOpen ? <X size={24} /> : <Menu size={24} />}
+            {menuOpen ? <X size={23} /> : <Menu size={23} />}
           </button>
         </div>
 
+        {/* MOBILE MENU */}
         {menuOpen && (
-          <div className="border-t border-black/5 bg-white px-5 py-5 lg:hidden">
-            <div className="flex flex-col gap-1">
-              {[
-                ["Home", "#home"],
-                ["About", "#about"],
-                ["Why RGT", "#why-rgt"],
-                ["Process", "#process"],
-                ["Services", "#services"],
-                ["LiDAR", "#lidar"],
-                ["Projects", "#projects"],
-                ["Technology", "#technology"],
-                ["Team", "#team"],
-                ["Clients", "#clients"],
-                ["Contact", "#contact"],
-              ].map(([label, href]) => (
-                <a
-                  key={label}
-                  href={href}
-                  onClick={() => setMenuOpen(false)}
-                  className="rounded-xl px-4 py-3 font-semibold hover:bg-[#f0f5f0]"
-                >
-                  {label}
-                </a>
-              ))}
+          <div className="border-t border-[#e8ece7] bg-white px-5 py-5 shadow-xl xl:hidden">
+            <div className="mx-auto max-w-2xl">
+
+              <div className="grid gap-1 sm:grid-cols-2">
+                {mainNavigation.map(([label, href]) => (
+                  <a
+                    key={label}
+                    href={href}
+                    onClick={() => setMenuOpen(false)}
+                    className="rounded-xl px-4 py-3.5 font-bold text-[#46534b] transition hover:bg-[#f1f6f1] hover:text-[#1d704c]"
+                  >
+                    {label}
+                  </a>
+                ))}
+              </div>
+
+              {/* MOBILE MORE */}
+              <button
+                type="button"
+                onClick={() => setMoreOpen((value) => !value)}
+                className="mt-1 flex w-full items-center justify-between rounded-xl px-4 py-3.5 font-bold text-[#46534b] hover:bg-[#f1f6f1]"
+              >
+                <span>More</span>
+
+                <ChevronDown
+                  size={18}
+                  className={`transition-transform ${
+                    moreOpen ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
+
+              {moreOpen && (
+                <div className="ml-3 border-l-2 border-[#dce8dd] pl-3">
+                  {moreNavigation.map(([label, href]) => (
+                    <a
+                      key={label}
+                      href={href}
+                      onClick={() => {
+                        setMenuOpen(false);
+                        setMoreOpen(false);
+                      }}
+                      className="flex items-center justify-between rounded-xl px-4 py-3 text-sm font-semibold text-[#66726b] hover:bg-[#f1f6f1] hover:text-[#1d704c]"
+                    >
+                      {label}
+                      <ChevronRight size={15} />
+                    </a>
+                  ))}
+                </div>
+              )}
 
               <a
                 href="#contact"
                 onClick={() => setMenuOpen(false)}
-                className="mt-2 rounded-xl bg-[#1d704c] px-4 py-3 text-center font-bold text-white"
+                className="mt-4 flex items-center justify-center gap-2 rounded-xl bg-[#1d704c] px-5 py-4 font-black text-white"
               >
                 Request a Survey
+                <ArrowRight size={17} />
               </a>
             </div>
           </div>
@@ -440,13 +640,17 @@ export default function Home() {
           />
 
           <div className="absolute inset-0 bg-[#071a12]/70" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#061a11]/90 via-[#092217]/70 to-[#092217]/30" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#061a11]/95 via-[#092217]/75 to-[#092217]/30" />
         </div>
 
         <div className="relative mx-auto grid min-h-[720px] max-w-7xl items-center gap-12 px-5 py-20 lg:grid-cols-[1.1fr_.9fr] lg:px-8">
+
           <div className="max-w-3xl text-white">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-bold backdrop-blur">
-              <ShieldCheck size={17} className="text-[#b5e76d]" />
+              <ShieldCheck
+                size={17}
+                className="text-[#b5e76d]"
+              />
               Empanelled With Mines &amp; Geology
             </div>
 
@@ -492,7 +696,9 @@ export default function Home() {
                   key={label}
                   className="rounded-2xl border border-white/10 bg-white/10 p-4 backdrop-blur"
                 >
-                  <div className="text-2xl font-black">{value}</div>
+                  <div className="text-2xl font-black">
+                    {value}
+                  </div>
                   <div className="mt-1 text-xs text-white/60">
                     {label}
                   </div>
@@ -553,6 +759,7 @@ export default function Home() {
       {/* ABOUT */}
       <section id="about" className="px-5 py-24 lg:px-8">
         <div className="mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-2">
+
           <div className="overflow-hidden rounded-[2rem] bg-[#dfe8df] shadow-2xl">
             <img
               src="/rgt-field-work/pihra-lithium-02.jpg"
@@ -606,30 +813,19 @@ export default function Home() {
                 </div>
               ))}
             </div>
-
-            <div className="mt-9 rounded-3xl bg-[#123e2c] p-7 text-white">
-              <div className="text-sm font-black uppercase tracking-[0.2em] text-[#b5e76d]">
-                Our Mission
-              </div>
-
-              <p className="mt-3 leading-7 text-white/75">
-                To deliver high-standard surveying and geospatial solutions
-                through meticulous planning, appropriate technology,
-                attention to detail and efficient project execution.
-              </p>
-            </div>
           </div>
         </div>
       </section>
 
-      {/* WHY CHOOSE RGT */}
+      {/* WHY RGT */}
       <section
         id="why-rgt"
         className="bg-[#eef2ed] px-5 py-24 lg:px-8"
       >
         <div className="mx-auto max-w-7xl">
-          {/* items-start keeps the heading aligned with the first card */}
+
           <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+
             <div>
               <div className="text-sm font-black uppercase tracking-[0.2em] text-[#26724e]">
                 Why Choose RGT
@@ -674,12 +870,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* OUR PROCESS */}
+      {/* PROCESS */}
       <section
         id="process"
         className="bg-white px-5 py-24 lg:px-8"
       >
         <div className="mx-auto max-w-7xl">
+
           <div className="mx-auto max-w-3xl text-center">
             <div className="text-sm font-black uppercase tracking-[0.2em] text-[#26724e]">
               Our Process
@@ -728,24 +925,54 @@ export default function Home() {
               })}
             </div>
           </div>
+        </div>
+      </section>
 
-          <div className="mt-14 rounded-[2rem] bg-[#123e2c] p-8 text-center text-white sm:p-10">
-            <h3 className="text-2xl font-black sm:text-3xl">
-              Have a surveying requirement?
-            </h3>
+      {/* INDUSTRIES */}
+      <section
+        id="industries"
+        className="bg-[#eef2ed] px-5 py-24 lg:px-8"
+      >
+        <div className="mx-auto max-w-7xl">
 
-            <p className="mx-auto mt-3 max-w-2xl text-sm leading-7 text-white/65">
-              Share your project details with RGT and our team can review
-              the requirement and discuss the appropriate survey approach.
+          <div className="max-w-2xl">
+            <div className="text-sm font-black uppercase tracking-[0.2em] text-[#26724e]">
+              Industries We Serve
+            </div>
+
+            <h2 className="mt-3 text-4xl font-black tracking-tight text-[#173a29] sm:text-5xl">
+              Surveying Across Project Environments
+            </h2>
+
+            <p className="mt-5 leading-8 text-[#69736c]">
+              RGT provides surveying and geospatial support across mining,
+              infrastructure, land, water resources and engineering projects.
             </p>
+          </div>
 
-            <a
-              href="#contact"
-              className="mt-7 inline-flex items-center gap-2 rounded-full bg-[#b5e76d] px-7 py-4 font-black text-[#173923] transition hover:-translate-y-1"
-            >
-              Start Your Project
-              <ArrowRight size={18} />
-            </a>
+          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {industries.map((item) => {
+              const Icon = item.icon;
+
+              return (
+                <div
+                  key={item.title}
+                  className="rounded-3xl bg-white p-7 shadow-sm ring-1 ring-black/5 transition hover:-translate-y-1 hover:shadow-lg"
+                >
+                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#dfeede] text-[#26724e]">
+                    <Icon size={25} />
+                  </div>
+
+                  <h3 className="mt-6 text-lg font-black text-[#173a29]">
+                    {item.title}
+                  </h3>
+
+                  <p className="mt-3 text-sm leading-6 text-[#6b756e]">
+                    {item.text}
+                  </p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -756,6 +983,7 @@ export default function Home() {
         className="bg-[#f7f9f6] px-5 py-24 lg:px-8"
       >
         <div className="mx-auto max-w-7xl">
+
           <div className="max-w-2xl">
             <div className="text-sm font-black uppercase tracking-[0.2em] text-[#26724e]">
               What We Do
@@ -804,8 +1032,12 @@ export default function Home() {
       </section>
 
       {/* LIDAR */}
-      <section id="lidar" className="px-5 py-24 lg:px-8">
+      <section
+        id="lidar"
+        className="px-5 py-24 lg:px-8"
+      >
         <div className="mx-auto grid max-w-7xl overflow-hidden rounded-[2rem] bg-[#123e2c] lg:grid-cols-2">
+
           <div className="relative min-h-[380px]">
             <img
               src="/lidar-solutions.png"
@@ -861,6 +1093,7 @@ export default function Home() {
         className="bg-[#eef2ed] px-5 py-24 lg:px-8"
       >
         <div className="mx-auto max-w-7xl">
+
           <div className="flex flex-col justify-between gap-5 md:flex-row md:items-end">
             <div>
               <div className="text-sm font-black uppercase tracking-[0.2em] text-[#26724e]">
@@ -874,12 +1107,13 @@ export default function Home() {
 
             <p className="max-w-xl text-sm leading-7 text-[#6c766f]">
               Real field-work imagery from RGT project environments,
-              demonstrating our surveying activities across mining and
+              demonstrating surveying activities across mining and
               infrastructure-related work.
             </p>
           </div>
 
           <div className="mt-12 grid gap-7 lg:grid-cols-2">
+
             <article className="overflow-hidden rounded-[2rem] bg-white shadow-sm ring-1 ring-black/5">
               <div className="grid grid-cols-3">
                 {[
@@ -942,6 +1176,49 @@ export default function Home() {
                 </p>
               </div>
             </article>
+
+          </div>
+        </div>
+      </section>
+
+      {/* EQUIPMENT */}
+      <section
+        id="equipment"
+        className="bg-[#123e2c] px-5 py-24 text-white lg:px-8"
+      >
+        <div className="mx-auto max-w-7xl">
+
+          <div className="max-w-2xl">
+            <div className="text-sm font-black uppercase tracking-[0.2em] text-[#b5e76d]">
+              Equipment &amp; Capabilities
+            </div>
+
+            <h2 className="mt-3 text-4xl font-black tracking-tight sm:text-5xl">
+              Technology We Work With
+            </h2>
+
+            <p className="mt-5 leading-8 text-white/65">
+              RGT combines field surveying equipment with modern processing
+              and mapping software to support different project requirements.
+            </p>
+          </div>
+
+          <div className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+            {equipment.map((item) => (
+              <div
+                key={item}
+                className="rounded-2xl border border-white/10 bg-white/5 p-5 font-bold text-white/85 transition hover:bg-white/10 hover:text-[#b5e76d]"
+              >
+                <div className="flex items-center gap-3">
+                  <CheckCircle2
+                    size={18}
+                    className="shrink-0 text-[#b5e76d]"
+                  />
+
+                  {item}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -952,6 +1229,7 @@ export default function Home() {
         className="px-5 py-24 lg:px-8"
       >
         <div className="mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-2">
+
           <div>
             <div className="text-sm font-black uppercase tracking-[0.2em] text-[#26724e]">
               Technology
@@ -988,12 +1266,115 @@ export default function Home() {
         </div>
       </section>
 
+      {/* STATISTICS */}
+      <section
+        id="statistics"
+        className="bg-[#eef2ed] px-5 py-20 lg:px-8"
+      >
+        <div className="mx-auto max-w-7xl">
+
+          <div className="text-center">
+            <div className="text-sm font-black uppercase tracking-[0.2em] text-[#26724e]">
+              RGT By The Numbers
+            </div>
+
+            <h2 className="mt-3 text-4xl font-black tracking-tight text-[#173a29] sm:text-5xl">
+              Experience That Goes Beyond Numbers
+            </h2>
+          </div>
+
+          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+
+            {[
+              ["14+", "Years Experience"],
+              ["2,000+", "KM Linear Projects"],
+              ["30,000+", "Acres Surveyed"],
+              ["30+", "Client Relationships"],
+              ["Pan India", "Project Capability"],
+            ].map(([value, label]) => (
+              <div
+                key={label}
+                className="rounded-3xl bg-white p-7 text-center shadow-sm ring-1 ring-black/5"
+              >
+                <div className="text-4xl font-black text-[#1d704c]">
+                  {value}
+                </div>
+
+                <div className="mt-2 text-sm font-bold text-[#66726b]">
+                  {label}
+                </div>
+              </div>
+            ))}
+
+          </div>
+        </div>
+      </section>
+
+      {/* CERTIFICATIONS */}
+      <section
+        id="certifications"
+        className="px-5 py-24 lg:px-8"
+      >
+        <div className="mx-auto max-w-7xl">
+
+          <div className="mx-auto max-w-3xl text-center">
+            <div className="text-sm font-black uppercase tracking-[0.2em] text-[#26724e]">
+              Credentials
+            </div>
+
+            <h2 className="mt-3 text-4xl font-black tracking-tight text-[#173a29] sm:text-5xl">
+              Certifications &amp; Empanelments
+            </h2>
+
+            <p className="mt-5 leading-8 text-[#69736c]">
+              Professional credentials and project-related recognition that
+              support RGT&apos;s surveying capabilities.
+            </p>
+          </div>
+
+          <div className="mx-auto mt-12 grid max-w-5xl gap-5 md:grid-cols-2">
+
+            <div className="rounded-[2rem] border border-black/5 bg-[#f7f9f6] p-8">
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#dfeede] text-[#26724e]">
+                <ShieldCheck size={27} />
+              </div>
+
+              <h3 className="mt-6 text-2xl font-black text-[#173a29]">
+                Mines &amp; Geology Empanelment
+              </h3>
+
+              <p className="mt-3 leading-7 text-[#68736b]">
+                RGT identifies itself as empanelled with Mines &amp; Geology
+                for mining and geology-related survey work.
+              </p>
+            </div>
+
+            <div className="rounded-[2rem] border border-black/5 bg-[#f7f9f6] p-8">
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#dfeede] text-[#26724e]">
+                <Radar size={27} />
+              </div>
+
+              <h3 className="mt-6 text-2xl font-black text-[#173a29]">
+                Drone / UAV Capability
+              </h3>
+
+              <p className="mt-3 leading-7 text-[#68736b]">
+                RGT provides drone/UAV-based surveying and aerial mapping
+                capability as part of its geospatial services.
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
       {/* TEAM */}
       <section
         id="team"
         className="bg-white px-5 py-24 lg:px-8"
       >
         <div className="mx-auto max-w-7xl">
+
           <div className="max-w-2xl">
             <div className="text-sm font-black uppercase tracking-[0.2em] text-[#26724e]">
               Our Team
@@ -1061,6 +1442,7 @@ export default function Home() {
         className="px-5 py-24 lg:px-8"
       >
         <div className="mx-auto max-w-7xl">
+
           <div className="text-center">
             <div className="text-sm font-black uppercase tracking-[0.2em] text-[#26724e]">
               Client Relationships
@@ -1093,6 +1475,68 @@ export default function Home() {
         </div>
       </section>
 
+      {/* FAQ */}
+      <section
+        id="faq"
+        className="bg-[#eef2ed] px-5 py-24 lg:px-8"
+      >
+        <div className="mx-auto max-w-4xl">
+
+          <div className="text-center">
+            <div className="text-sm font-black uppercase tracking-[0.2em] text-[#26724e]">
+              FAQ
+            </div>
+
+            <h2 className="mt-3 text-4xl font-black tracking-tight text-[#173a29] sm:text-5xl">
+              Frequently Asked Questions
+            </h2>
+
+            <p className="mx-auto mt-5 max-w-2xl leading-7 text-[#69736c]">
+              Quick answers to common questions about RGT&apos;s surveying
+              and geospatial services.
+            </p>
+          </div>
+
+          <div className="mt-12 space-y-3">
+            {faqs.map((faq, index) => {
+              const isOpen = faqOpen === index;
+
+              return (
+                <div
+                  key={faq.question}
+                  className="overflow-hidden rounded-2xl border border-black/5 bg-white"
+                >
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setFaqOpen(isOpen ? null : index)
+                    }
+                    className="flex w-full items-center justify-between gap-5 px-6 py-5 text-left"
+                  >
+                    <span className="font-black text-[#173a29]">
+                      {faq.question}
+                    </span>
+
+                    <ChevronDown
+                      size={20}
+                      className={`shrink-0 text-[#26724e] transition-transform ${
+                        isOpen ? "rotate-180" : ""
+                      }`}
+                    />
+                  </button>
+
+                  {isOpen && (
+                    <div className="border-t border-black/5 px-6 pb-6 pt-4 text-sm leading-7 text-[#69736c]">
+                      {faq.answer}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       {/* CONTACT */}
       <section
         id="contact"
@@ -1102,7 +1546,7 @@ export default function Home() {
 
           <div>
             <div className="text-sm font-black uppercase tracking-[0.2em] text-[#b5e76d]">
-              Start a Project
+              Contact RGT
             </div>
 
             <h2 className="mt-4 text-4xl font-black tracking-tight sm:text-5xl">
@@ -1115,6 +1559,7 @@ export default function Home() {
             </p>
 
             <div className="mt-9 space-y-4">
+
               <a
                 href={`tel:${PHONE.replace(/\s/g, "")}`}
                 className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/5 p-5 transition hover:bg-white/10"
@@ -1188,13 +1633,15 @@ export default function Home() {
                     href="https://www.google.com/maps/search/?api=1&query=Opposite+Mohanpur+Church,+Near+Nehru+Yuva+Kendra,+Giridih,+Jharkhand"
                     target="_blank"
                     rel="noreferrer"
-                    className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-xl bg-white px-4 py-2.5 text-sm font-black text-[#173a29] shadow-lg transition hover:-translate-y-0.5 hover:bg-[#f4f7f2]"
+                    className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-xl bg-white px-4 py-2.5 text-sm font-black text-[#173a29] shadow-lg transition hover:-translate-y-0.5"
                   >
                     <MapPin
                       size={16}
                       className="text-[#d92d2d]"
                     />
+
                     Open in Maps
+
                     <ArrowRight size={15} />
                   </a>
                 </div>
@@ -1202,7 +1649,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* ENQUIRY FORM */}
+          {/* FORM */}
           <form
             onSubmit={handleSubmit}
             className="rounded-[2rem] bg-white p-6 text-[#17231d] shadow-2xl sm:p-9"
@@ -1368,15 +1815,8 @@ export default function Home() {
             </div>
 
             {submitted && (
-              <div className="mt-5 flex items-start gap-3 rounded-xl border border-green-200 bg-green-50 p-4 text-sm font-semibold text-green-800">
-                <CheckCircle2
-                  className="mt-0.5 shrink-0"
-                  size={19}
-                />
-
-                <div>
-                  Your enquiry has been sent successfully.
-                </div>
+              <div className="mt-5 rounded-xl border border-green-200 bg-green-50 p-4 text-sm font-semibold text-green-800">
+                Your enquiry has been sent successfully.
               </div>
             )}
 
@@ -1403,10 +1843,6 @@ export default function Home() {
                 </>
               )}
             </button>
-
-            <p className="mt-4 text-center text-xs text-[#8a938d]">
-              Your enquiry will be sent to the RGT enquiry email.
-            </p>
           </form>
         </div>
       </section>
@@ -1447,17 +1883,17 @@ export default function Home() {
 
             <div className="mt-5 space-y-3 text-sm text-white/55">
               <div className="flex gap-3">
-                <MapPin size={17} className="shrink-0" />
+                <MapPin size={17} />
                 Giridih, Jharkhand
               </div>
 
               <div className="flex gap-3">
-                <Phone size={17} className="shrink-0" />
+                <Phone size={17} />
                 {PHONE}
               </div>
 
               <div className="flex gap-3">
-                <Mail size={17} className="shrink-0" />
+                <Mail size={17} />
                 {EMAIL}
               </div>
             </div>
@@ -1469,68 +1905,25 @@ export default function Home() {
             </div>
 
             <div className="mt-5 grid grid-cols-2 gap-3 text-sm text-white/55">
-              <a
-                href="#about"
-                className="hover:text-[#b5e76d]"
-              >
-                About
-              </a>
+              {mainNavigation.map(([label, href]) => (
+                <a
+                  key={label}
+                  href={href}
+                  className="transition hover:text-[#b5e76d]"
+                >
+                  {label}
+                </a>
+              ))}
 
-              <a
-                href="#why-rgt"
-                className="hover:text-[#b5e76d]"
-              >
-                Why RGT
-              </a>
-
-              <a
-                href="#process"
-                className="hover:text-[#b5e76d]"
-              >
-                Process
-              </a>
-
-              <a
-                href="#services"
-                className="hover:text-[#b5e76d]"
-              >
-                Services
-              </a>
-
-              <a
-                href="#projects"
-                className="hover:text-[#b5e76d]"
-              >
-                Projects
-              </a>
-
-              <a
-                href="#technology"
-                className="hover:text-[#b5e76d]"
-              >
-                Technology
-              </a>
-
-              <a
-                href="#team"
-                className="hover:text-[#b5e76d]"
-              >
-                Team
-              </a>
-
-              <a
-                href="#clients"
-                className="hover:text-[#b5e76d]"
-              >
-                Clients
-              </a>
-
-              <a
-                href="#contact"
-                className="hover:text-[#b5e76d]"
-              >
-                Contact
-              </a>
+              {moreNavigation.slice(0, 7).map(([label, href]) => (
+                <a
+                  key={label}
+                  href={href}
+                  className="transition hover:text-[#b5e76d]"
+                >
+                  {label}
+                </a>
+              ))}
             </div>
           </div>
         </div>
