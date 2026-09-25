@@ -37,12 +37,8 @@ export async function POST(request: Request) {
 
     const { data, error } = await resend.emails.send({
       from: "RGT Website <onboarding@resend.dev>",
-
-      // TEMPORARY TESTING EMAIL
-      to: ["almanahmed123098@gmail.com"],
-
+      to: ["rgtdronsurvey@gmail.com"],
       subject: `New RGT Survey Enquiry - ${name}`,
-
       html: `
         <!DOCTYPE html>
         <html>
@@ -64,7 +60,6 @@ export async function POST(request: Request) {
                 padding:30px;
               "
             >
-
               <h1 style="margin-top:0;color:#123e2c;">
                 New RGT Survey Enquiry
               </h1>
@@ -84,27 +79,27 @@ export async function POST(request: Request) {
               <h3>Customer Information</h3>
 
               <p>
-                <strong>Name:</strong><br>
+                <strong>Name:</strong><br />
                 ${escapeHtml(name)}
               </p>
 
               <p>
-                <strong>Phone:</strong><br>
+                <strong>Phone:</strong><br />
                 ${escapeHtml(phone)}
               </p>
 
               <p>
-                <strong>Email:</strong><br>
+                <strong>Email:</strong><br />
                 ${escapeHtml(email || "Not provided")}
               </p>
 
               <p>
-                <strong>Survey Requirement:</strong><br>
+                <strong>Survey Requirement:</strong><br />
                 ${escapeHtml(requirement)}
               </p>
 
               <p>
-                <strong>Project Location:</strong><br>
+                <strong>Project Location:</strong><br />
                 ${escapeHtml(location || "Not provided")}
               </p>
 
@@ -118,7 +113,7 @@ export async function POST(request: Request) {
                   line-height:1.7;
                 "
               >
-                ${escapeHtml(details).replace(/\n/g, "<br>")}
+                ${escapeHtml(details).replace(/\n/g, "<br />")}
               </div>
 
               <hr
@@ -132,7 +127,6 @@ export async function POST(request: Request) {
               <p style="font-size:13px;color:#7b857e;">
                 Submitted from the Rayyan Geo Tech website.
               </p>
-
             </div>
           </body>
         </html>
