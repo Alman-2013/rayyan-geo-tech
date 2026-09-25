@@ -186,6 +186,39 @@ const whyChooseRGT = [
   },
 ];
 
+const processSteps = [
+  {
+    number: "01",
+    title: "Requirement",
+    text: "Understand your project, survey requirement, location, scope and expected deliverables.",
+    icon: Compass,
+  },
+  {
+    number: "02",
+    title: "Site Planning",
+    text: "Plan the survey methodology, resources, equipment and field requirements.",
+    icon: MapPin,
+  },
+  {
+    number: "03",
+    title: "Field Survey",
+    text: "Our field team collects accurate project data using appropriate survey technology.",
+    icon: Ruler,
+  },
+  {
+    number: "04",
+    title: "Data Processing",
+    text: "Collected information is processed through surveying, CAD, GIS and digital workflows.",
+    icon: Database,
+  },
+  {
+    number: "05",
+    title: "Final Deliverables",
+    text: "Project-ready maps, drawings, data and documentation are prepared according to the requirement.",
+    icon: CheckCircle2,
+  },
+];
+
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -324,6 +357,7 @@ export default function Home() {
               ["Home", "#home"],
               ["About", "#about"],
               ["Why RGT", "#why-rgt"],
+              ["Process", "#process"],
               ["Services", "#services"],
               ["LiDAR", "#lidar"],
               ["Projects", "#projects"],
@@ -365,6 +399,7 @@ export default function Home() {
                 ["Home", "#home"],
                 ["About", "#about"],
                 ["Why RGT", "#why-rgt"],
+                ["Process", "#process"],
                 ["Services", "#services"],
                 ["LiDAR", "#lidar"],
                 ["Projects", "#projects"],
@@ -593,7 +628,8 @@ export default function Home() {
         className="bg-[#eef2ed] px-5 py-24 lg:px-8"
       >
         <div className="mx-auto max-w-7xl">
-          <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+          {/* items-start keeps the heading aligned with the first card */}
+          <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
             <div>
               <div className="text-sm font-black uppercase tracking-[0.2em] text-[#26724e]">
                 Why Choose RGT
@@ -638,10 +674,86 @@ export default function Home() {
         </div>
       </section>
 
+      {/* OUR PROCESS */}
+      <section
+        id="process"
+        className="bg-white px-5 py-24 lg:px-8"
+      >
+        <div className="mx-auto max-w-7xl">
+          <div className="mx-auto max-w-3xl text-center">
+            <div className="text-sm font-black uppercase tracking-[0.2em] text-[#26724e]">
+              Our Process
+            </div>
+
+            <h2 className="mt-3 text-4xl font-black tracking-tight text-[#173a29] sm:text-5xl">
+              From Requirement to Reliable Results
+            </h2>
+
+            <p className="mt-5 leading-8 text-[#69736c]">
+              A structured workflow helps us understand the requirement,
+              plan the field work, collect accurate information and prepare
+              useful project deliverables.
+            </p>
+          </div>
+
+          <div className="relative mt-16">
+            <div className="absolute left-[10%] right-[10%] top-10 hidden h-px bg-[#cdd9cf] lg:block" />
+
+            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
+              {processSteps.map((step) => {
+                const Icon = step.icon;
+
+                return (
+                  <div
+                    key={step.number}
+                    className="relative text-center"
+                  >
+                    <div className="relative z-10 mx-auto flex h-20 w-20 items-center justify-center rounded-full border-8 border-white bg-[#123e2c] text-[#b5e76d] shadow-lg">
+                      <Icon size={27} />
+                    </div>
+
+                    <div className="mt-5 text-xs font-black tracking-[0.2em] text-[#26724e]">
+                      STEP {step.number}
+                    </div>
+
+                    <h3 className="mt-2 text-xl font-black text-[#173a29]">
+                      {step.title}
+                    </h3>
+
+                    <p className="mt-3 text-sm leading-6 text-[#69736c]">
+                      {step.text}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          <div className="mt-14 rounded-[2rem] bg-[#123e2c] p-8 text-center text-white sm:p-10">
+            <h3 className="text-2xl font-black sm:text-3xl">
+              Have a surveying requirement?
+            </h3>
+
+            <p className="mx-auto mt-3 max-w-2xl text-sm leading-7 text-white/65">
+              Share your project details with RGT and our team can review
+              the requirement and discuss the appropriate survey approach.
+            </p>
+
+            <a
+              href="#contact"
+              className="mt-7 inline-flex items-center gap-2 rounded-full bg-[#b5e76d] px-7 py-4 font-black text-[#173923] transition hover:-translate-y-1"
+            >
+              Start Your Project
+              <ArrowRight size={18} />
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* SERVICES */}
       <section
         id="services"
-        className="bg-white px-5 py-24 lg:px-8"
+        className="bg-[#f7f9f6] px-5 py-24 lg:px-8"
       >
         <div className="mx-auto max-w-7xl">
           <div className="max-w-2xl">
@@ -666,7 +778,7 @@ export default function Home() {
               return (
                 <div
                   key={service.title}
-                  className="group rounded-3xl border border-black/5 bg-[#f7f9f6] p-7 transition duration-300 hover:-translate-y-1 hover:bg-[#123e2c] hover:text-white hover:shadow-xl"
+                  className="group rounded-3xl border border-black/5 bg-white p-7 transition duration-300 hover:-translate-y-1 hover:bg-[#123e2c] hover:text-white hover:shadow-xl"
                 >
                   <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#dfeede] text-[#26724e] transition group-hover:bg-[#b5e76d]">
                     <Icon size={26} />
@@ -1369,6 +1481,13 @@ export default function Home() {
                 className="hover:text-[#b5e76d]"
               >
                 Why RGT
+              </a>
+
+              <a
+                href="#process"
+                className="hover:text-[#b5e76d]"
+              >
+                Process
               </a>
 
               <a
