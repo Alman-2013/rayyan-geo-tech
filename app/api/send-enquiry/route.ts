@@ -36,8 +36,9 @@ export async function POST(request: Request) {
     }
 
     const { data, error } = await resend.emails.send({
-      from: "RGT Website <onboarding@resend.dev>",
+      from: "RGT Website <enquiry@rgtjharkhand.in>",
       to: ["rgtdronsurvey@gmail.com"],
+      replyTo: email || undefined,
       subject: `New RGT Survey Enquiry - ${name}`,
       html: `
         <!DOCTYPE html>
