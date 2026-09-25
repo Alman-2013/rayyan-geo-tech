@@ -53,6 +53,281 @@ const moreNavigation = [
   ["Contact / Google Maps", "#contact"],
 ];
 
+type Project = {
+  category: string;
+  title: string;
+  scope: string;
+  client: string;
+  owner: string;
+  location: string;
+  image?: string;
+};
+
+const projects: Project[] = [
+  {
+    category: "Water Resources",
+    title:
+      "DPR for Torlow & Putungra Reservoir Irrigation Scheme",
+    scope:
+      "X-sectional survey of existing canals (52 Kms), grid survey of command area (5700 Hectare), and as-built survey of existing structures.",
+    client:
+      "Lahmeyer International India (Pvt.) Ltd. Gurgaon & Hydel Construction, Kangra, H.P.",
+    owner:
+      "Waterways Division, Chaibasa under WRD Department of Government of Jharkhand",
+    location: "Manjhari Block, Chaibasa, Jharkhand",
+  },
+  {
+    category: "Roads & Highways",
+    title:
+      "Giridih–Jamua–Sarwan Road",
+    scope:
+      "45.15 Km road project including DGPS Ground Control Points, traversing, OGL, topographical survey and centre-line stakeout.",
+    client:
+      "GKCPL, Hyderabad; Consultant – Euroestudios S.L. in JV with Rodic Consultants Pvt. Ltd.",
+    owner:
+      "State Highway Authority of Jharkhand (SHAJ), project sponsored by Asian Development Bank (ADB)",
+    location: "Saran–Jamua–Giridih, Jharkhand",
+  },
+  {
+    category: "Forest & GIS",
+    title:
+      "Forest Boundary Identification & Demarcation",
+    scope:
+      "Identification and demarcation of forest boundaries using DGPS / ETS survey under various forest divisions.",
+    client: "Cyber Swift, Kolkata",
+    owner:
+      "Department of Forest, Environment & Climate Change, Government of Jharkhand",
+    location: "Gomia, Bokaro Forest Division",
+  },
+  {
+    category: "Water Resources",
+    title:
+      "Fulwara & Kawaldag Reservoir Irrigation Scheme",
+    scope:
+      "Cross-sectional survey of existing canals covering 22 Kms and as-built survey of existing structures.",
+    client:
+      "Lahmeyer International India (Pvt.) Ltd. Gurgaon & Hydel Construction, Kangra, H.P.",
+    owner:
+      "Waterways Division, Garhwa under WRD Department of Government of Jharkhand",
+    location: "Garhwa, Jharkhand",
+  },
+  {
+    category: "Government",
+    title:
+      "Plastic Park, Devipur",
+    scope:
+      "Topographical survey of the proposed Plastic Park covering an area of 159.47 acres.",
+    client:
+      "Ernst & Young LLP and The Creator Consultant, Ranchi",
+    owner:
+      "Jharkhand Industrial and Infrastructure Development Corporation (JIIDCO)",
+    location: "Devipur, Deoghar, Jharkhand",
+  },
+  {
+    category: "Government",
+    title:
+      "Vinoba Bhave University",
+    scope:
+      "Topographical survey including as-built survey of existing structures of the university.",
+    client: "The Creator Consultant, Ranchi",
+    owner:
+      "Vinoba Bhave University, Hazaribagh",
+    location: "Hazaribagh, Jharkhand",
+  },
+  {
+    category: "Government",
+    title:
+      "Indian Statistical Institute",
+    scope:
+      "Topographical survey covering approximately 60 acres including Rose Villa, Upper Farm House and Lower Farm House.",
+    client:
+      "Indian Statistical Institute, Giridih",
+    owner:
+      "Indian Statistical Institute, Government of India",
+    location: "Giridih, Jharkhand",
+  },
+  {
+    category: "Infrastructure",
+    title:
+      "Parashnath Helipad & Reception Building",
+    scope:
+      "Topographical survey of Parashnath Mountain for construction of a helipad and reception building at MSL 1312 m.",
+    client: "The Creator Consultant, Ranchi",
+    owner:
+      "Building Construction Division, Giridih, Jharkhand",
+    location: "Giridih, Jharkhand",
+  },
+  {
+    category: "Roads & Highways",
+    title:
+      "Chotaki Kharagdiha–Mirzaganj & Link Roads",
+    scope:
+      "Survey, preparation of LS, CS and quantity calculation for road widening and strengthening.",
+    client: "JNP Infra Pvt. Ltd., Raniganj",
+    owner:
+      "Road Construction Department, Government of Jharkhand",
+    location: "Giridih, Jharkhand",
+  },
+  {
+    category: "Roads & Highways",
+    title:
+      "Kowar–Koderma Road",
+    scope:
+      "Survey, preparation of LS, CS and quantity calculation for widening and strengthening from KM 0+000 to 37+200.",
+    client: "RKS, Ranchi",
+    owner: "PWD, Giridih",
+    location: "Giridih, Jharkhand",
+  },
+  {
+    category: "Infrastructure",
+    title:
+      "Oil Pipeline Across Kiul River",
+    scope:
+      "Alignment survey for the proposed oil pipeline across the Kiul River.",
+    client: "Nandani Impex Pvt. Ltd.",
+    owner: "Indian Oil Company (IOC)",
+    location: "Lakhisarai, Bihar",
+  },
+  {
+    category: "Infrastructure",
+    title:
+      "Proposed Bridge Across Barakar River",
+    scope:
+      "Alignment survey and LS/CS on upstream and downstream sections up to 1 km.",
+    client: "Ranchi Design, Ranchi",
+    owner:
+      "Special Division, Government of Jharkhand",
+    location: "Dhanbad, Jharkhand",
+  },
+  {
+    category: "Roads & Highways",
+    title:
+      "NH-114A to Parashnath Hill Foot",
+    scope:
+      "Survey, preparation of LS, CS and quantity calculation for 4.1 Km road widening and strengthening.",
+    client:
+      "Panchan Kumar Mishra Contractor, Deoghar",
+    owner: "PWD, Giridih",
+    location: "Madhuban, Jharkhand",
+  },
+  {
+    category: "Roads & Highways",
+    title:
+      "Giridih–Jamua Road",
+    scope:
+      "Survey, preparation of LS and CS with quantity calculation according to design for 27.25 Km.",
+    client: "PWD, Giridih",
+    owner: "PWD, Giridih",
+    location: "Jamua, Jharkhand",
+  },
+  {
+    category: "Government",
+    title:
+      "Giridih Collectorate",
+    scope:
+      "Topographical survey including as-built survey of existing structures for a beautification work proposal.",
+    client:
+      "Building Construction Division, Giridih, Jharkhand",
+    owner: "Government of Jharkhand",
+    location: "Giridih, Jharkhand",
+  },
+  {
+    category: "Water Resources",
+    title:
+      "Existing Canal Survey – Odisha",
+    scope:
+      "Topographical and alignment survey of an existing canal for further study.",
+    client: "VD Surveyors",
+    owner:
+      "Irrigation Department, Pradip, Odisha",
+    location: "Pradip, Odisha",
+  },
+  {
+    category: "Infrastructure",
+    title:
+      "District Level Football Stadium, Pakur",
+    scope:
+      "Topographical / contour survey and stakeout / layout of the proposed football stadium.",
+    client: "The Creator Consultant, Ranchi",
+    owner: "Government of Jharkhand",
+    location: "Pakur, Jharkhand",
+  },
+  {
+    category: "Infrastructure",
+    title:
+      "Over Bridge – ECL Command Area",
+    scope:
+      "As-built survey and verification of road over bridge under the ECL Command Area.",
+    client:
+      "ABC Construction Contractor / RITES Consultant",
+    owner: "ECL Command",
+    location: "Rajmahal, Jharkhand",
+  },
+  {
+    category: "Forest & GIS",
+    title:
+      "Forest Clearance – Bus Stand & Parking, Madhuban",
+    scope:
+      "DGPS survey, geo-referenced digital shapefile in ArcGIS, topo-sheet georeferencing, village-map digitization and KML polygon creation.",
+    client:
+      "Rural Work Department (RWD)",
+    owner: "Tourism Department, Jharkhand",
+    location: "Madhuban, Jharkhand",
+  },
+  {
+    category: "Forest & GIS",
+    title:
+      "Forest Clearance – Helipad & Reception Building",
+    scope:
+      "DGPS survey, geo-referenced digital shapefile in ArcGIS, topo-sheet georeferencing, village-map digitization and KML polygon creation.",
+    client:
+      "Building Construction Division, Giridih, Jharkhand",
+    owner: "Civil Aviation Department, Ranchi",
+    location: "Madhuban, Jharkhand",
+  },
+  {
+    category: "Roads & Highways",
+    title:
+      "PMGSY Roads DPR",
+    scope:
+      "Survey, preparation of LS, CS and quantity calculation for different road stretches covering 25.35 Km.",
+    client:
+      "Excellent Grapher Surveying Company, Agra",
+    owner: "Rural Work Department (RWD)",
+    location: "Chakai, Jamui, Bihar",
+  },
+  {
+    category: "Infrastructure",
+    title:
+      "Jheel Restaurant – Tillaya Dam",
+    scope:
+      "Topographical survey including as-built survey of existing structures for development of a 15-acre site.",
+    client: "The Creator Consultant, Ranchi",
+    owner: "Jharkhand Tourism Department",
+    location: "Tillaya Dam, Jharkhand",
+  },
+  {
+    category: "Water Resources",
+    title:
+      "Konar Canal Survey",
+    scope:
+      "Topographical and alignment survey of existing and under-construction canal for earthwork quantity estimation.",
+    client: "Contractor",
+    owner: "Irrigation Department, Konar Canal Project",
+    location: "Dumri, Jharkhand",
+  },
+];
+
+const projectCategories = [
+  "All",
+  "Roads & Highways",
+  "Water Resources",
+  "Mining",
+  "Government",
+  "Forest & GIS",
+  "Infrastructure",
+];
+
 const clientLogos = [
   { name: "Government of Jharkhand", src: "/clients/govt-of-jharkhand.jpg" },
   { name: "Jharkhand Police", src: "/clients/jh-police.jpg" },
@@ -332,6 +607,9 @@ export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [moreOpen, setMoreOpen] = useState(false);
   const [faqOpen, setFaqOpen] = useState<number | null>(null);
+  const [projectFilter, setProjectFilter] = useState("All");
+  const [selectedProject, setSelectedProject] =
+    useState<Project | null>(null);
 
   const [form, setForm] = useState({
     name: "",
@@ -401,6 +679,13 @@ export default function Home() {
     }
   }
 
+  const filteredProjects =
+    projectFilter === "All"
+      ? projects
+      : projects.filter(
+          (project) => project.category === projectFilter
+        );
+
   function closeMore() {
     setMoreOpen(false);
   }
@@ -444,7 +729,6 @@ export default function Home() {
       <header className="sticky top-0 z-50 border-b border-[#e8ece7] bg-white/95 shadow-[0_4px_25px_rgba(0,0,0,0.04)] backdrop-blur-xl">
         <div className="mx-auto flex min-h-[88px] max-w-[1500px] items-center justify-between gap-5 px-5 lg:px-8">
 
-          {/* LOGO */}
           <a
             href="#home"
             className="group flex shrink-0 items-center gap-3"
@@ -474,7 +758,6 @@ export default function Home() {
             </div>
           </a>
 
-          {/* MAIN NAV */}
           <nav className="hidden items-center gap-1 xl:flex">
             {mainNavigation.map(([label, href]) => (
               <a
@@ -488,12 +771,11 @@ export default function Home() {
               </a>
             ))}
 
-            {/* MORE DROPDOWN */}
             <div className="relative">
               <button
                 type="button"
                 onClick={() => setMoreOpen((value) => !value)}
-                className={`group flex items-center gap-2 rounded-full px-3.5 py-2.5 text-[13px] font-bold transition ${
+                className={`flex items-center gap-2 rounded-full px-3.5 py-2.5 text-[13px] font-bold transition ${
                   moreOpen
                     ? "bg-[#eef5ef] text-[#1d704c]"
                     : "text-[#536058] hover:bg-[#f5f8f4] hover:text-[#1d704c]"
@@ -503,49 +785,41 @@ export default function Home() {
 
                 <ChevronDown
                   size={15}
-                  className={`transition-transform duration-200 ${
+                  className={`transition-transform ${
                     moreOpen ? "rotate-180" : ""
                   }`}
                 />
               </button>
 
               {moreOpen && (
-                <>
-                  <div
-                    className="fixed inset-0 z-[-1]"
-                    onClick={closeMore}
-                  />
+                <div className="absolute right-0 top-[calc(100%+14px)] z-50 w-[310px] overflow-hidden rounded-2xl border border-[#e2e8e1] bg-white p-2 shadow-[0_20px_60px_rgba(18,62,44,0.16)]">
 
-                  <div className="absolute right-0 top-[calc(100%+14px)] z-50 w-[310px] overflow-hidden rounded-2xl border border-[#e2e8e1] bg-white p-2 shadow-[0_20px_60px_rgba(18,62,44,0.16)]">
-
-                    <div className="px-4 pb-2 pt-3">
-                      <div className="text-[10px] font-black uppercase tracking-[0.2em] text-[#8a958d]">
-                        Explore RGT
-                      </div>
+                  <div className="px-4 pb-2 pt-3">
+                    <div className="text-[10px] font-black uppercase tracking-[0.2em] text-[#8a958d]">
+                      Explore RGT
                     </div>
-
-                    {moreNavigation.map(([label, href]) => (
-                      <a
-                        key={label}
-                        href={href}
-                        onClick={closeMore}
-                        className="group flex items-center justify-between rounded-xl px-4 py-3 text-sm font-bold text-[#425048] transition hover:bg-[#f0f6f0] hover:text-[#1d704c]"
-                      >
-                        <span>{label}</span>
-
-                        <ChevronRight
-                          size={16}
-                          className="text-[#9aa49d] transition group-hover:translate-x-1 group-hover:text-[#1d704c]"
-                        />
-                      </a>
-                    ))}
                   </div>
-                </>
+
+                  {moreNavigation.map(([label, href]) => (
+                    <a
+                      key={label}
+                      href={href}
+                      onClick={closeMore}
+                      className="group flex items-center justify-between rounded-xl px-4 py-3 text-sm font-bold text-[#425048] transition hover:bg-[#f0f6f0] hover:text-[#1d704c]"
+                    >
+                      <span>{label}</span>
+
+                      <ChevronRight
+                        size={16}
+                        className="text-[#9aa49d] transition group-hover:translate-x-1 group-hover:text-[#1d704c]"
+                      />
+                    </a>
+                  ))}
+                </div>
               )}
             </div>
           </nav>
 
-          {/* CTA */}
           <a
             href="#contact"
             className="hidden shrink-0 items-center gap-2 rounded-full bg-[#1d704c] px-5 py-3.5 text-sm font-black text-white shadow-[0_8px_25px_rgba(29,112,76,0.18)] transition hover:-translate-y-0.5 hover:bg-[#155a3c] xl:flex"
@@ -554,7 +828,6 @@ export default function Home() {
             <ArrowRight size={16} />
           </a>
 
-          {/* MOBILE */}
           <button
             onClick={() => setMenuOpen((value) => !value)}
             className="rounded-xl border border-[#dfe5df] bg-[#f7f9f6] p-2.5 text-[#173a29] xl:hidden"
@@ -564,7 +837,6 @@ export default function Home() {
           </button>
         </div>
 
-        {/* MOBILE MENU */}
         {menuOpen && (
           <div className="border-t border-[#e8ece7] bg-white px-5 py-5 shadow-xl xl:hidden">
             <div className="mx-auto max-w-2xl">
@@ -575,14 +847,13 @@ export default function Home() {
                     key={label}
                     href={href}
                     onClick={() => setMenuOpen(false)}
-                    className="rounded-xl px-4 py-3.5 font-bold text-[#46534b] transition hover:bg-[#f1f6f1] hover:text-[#1d704c]"
+                    className="rounded-xl px-4 py-3.5 font-bold text-[#46534b] hover:bg-[#f1f6f1]"
                   >
                     {label}
                   </a>
                 ))}
               </div>
 
-              {/* MOBILE MORE */}
               <button
                 type="button"
                 onClick={() => setMoreOpen((value) => !value)}
@@ -646,6 +917,7 @@ export default function Home() {
         <div className="relative mx-auto grid min-h-[720px] max-w-7xl items-center gap-12 px-5 py-20 lg:grid-cols-[1.1fr_.9fr] lg:px-8">
 
           <div className="max-w-3xl text-white">
+
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-bold backdrop-blur">
               <ShieldCheck
                 size={17}
@@ -699,6 +971,7 @@ export default function Home() {
                   <div className="text-2xl font-black">
                     {value}
                   </div>
+
                   <div className="mt-1 text-xs text-white/60">
                     {label}
                   </div>
@@ -824,7 +1097,7 @@ export default function Home() {
       >
         <div className="mx-auto max-w-7xl">
 
-          <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+          <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
 
             <div>
               <div className="text-sm font-black uppercase tracking-[0.2em] text-[#26724e]">
@@ -849,7 +1122,7 @@ export default function Home() {
                 return (
                   <div
                     key={item.title}
-                    className="group rounded-3xl bg-white p-6 shadow-sm ring-1 ring-black/5 transition duration-300 hover:-translate-y-1 hover:shadow-lg"
+                    className="group rounded-3xl bg-white p-6 shadow-sm ring-1 ring-black/5 transition hover:-translate-y-1 hover:shadow-lg"
                   >
                     <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#dfeede] text-[#26724e] transition group-hover:bg-[#123e2c] group-hover:text-[#b5e76d]">
                       <Icon size={22} />
@@ -1094,92 +1367,221 @@ export default function Home() {
       >
         <div className="mx-auto max-w-7xl">
 
-          <div className="flex flex-col justify-between gap-5 md:flex-row md:items-end">
+          <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+
             <div>
               <div className="text-sm font-black uppercase tracking-[0.2em] text-[#26724e]">
-                Selected Work
+                Project Portfolio
               </div>
 
               <h2 className="mt-3 text-4xl font-black tracking-tight text-[#173a29] sm:text-5xl">
-                Field Projects
+                Key Projects Executed
               </h2>
+
+              <p className="mt-5 max-w-2xl leading-7 text-[#69736c]">
+                Selected projects from RGT&apos;s documented project portfolio,
+                covering roads, water resources, government work, forest/GIS
+                and infrastructure.
+              </p>
             </div>
 
-            <p className="max-w-xl text-sm leading-7 text-[#6c766f]">
-              Real field-work imagery from RGT project environments,
-              demonstrating surveying activities across mining and
-              infrastructure-related work.
-            </p>
+            <div className="rounded-2xl bg-white px-5 py-4 text-center shadow-sm">
+              <div className="text-3xl font-black text-[#1d704c]">
+                {projects.length}+
+              </div>
+
+              <div className="text-xs font-bold uppercase tracking-wider text-[#7a847d]">
+                Key Projects
+              </div>
+            </div>
           </div>
 
-          <div className="mt-12 grid gap-7 lg:grid-cols-2">
+          {/* FILTERS */}
+          <div className="mt-10 flex gap-2 overflow-x-auto pb-2">
+            {projectCategories.map((category) => {
+              const active = projectFilter === category;
 
-            <article className="overflow-hidden rounded-[2rem] bg-white shadow-sm ring-1 ring-black/5">
-              <div className="grid grid-cols-3">
-                {[
-                  "/rgt-field-work/pihra-lithium-01.jpg",
-                  "/rgt-field-work/pihra-lithium-02.jpg",
-                  "/rgt-field-work/pihra-lithium-03.jpg",
-                ].map((src, index) => (
-                  <img
-                    key={src}
-                    src={src}
-                    alt={`Pihra lithium project ${index + 1}`}
-                    className="h-64 w-full object-cover"
-                  />
-                ))}
-              </div>
+              return (
+                <button
+                  key={category}
+                  type="button"
+                  onClick={() => setProjectFilter(category)}
+                  className={`whitespace-nowrap rounded-full px-5 py-3 text-sm font-black transition ${
+                    active
+                      ? "bg-[#123e2c] text-[#b5e76d] shadow-lg"
+                      : "bg-white text-[#5e6a62] ring-1 ring-black/5 hover:bg-[#f5f8f4] hover:text-[#1d704c]"
+                  }`}
+                >
+                  {category}
+                </button>
+              );
+            })}
+          </div>
 
-              <div className="p-7">
-                <div className="text-xs font-black uppercase tracking-[0.18em] text-[#26724e]">
-                  Mining Survey
+          {/* PROJECT GRID */}
+          <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+
+            {filteredProjects.map((project, index) => (
+              <article
+                key={`${project.title}-${index}`}
+                className="group flex flex-col overflow-hidden rounded-[1.7rem] bg-white shadow-sm ring-1 ring-black/5 transition duration-300 hover:-translate-y-1 hover:shadow-xl"
+              >
+
+                <div className="relative h-52 overflow-hidden bg-[#123e2c]">
+
+                  {project.image ? (
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center bg-white">
+                      <img
+                        src="/rgt-logo.png"
+                        alt="Rayyan Geo Tech"
+                        className="h-28 w-auto max-w-[75%] object-contain"
+                      />
+                    </div>
+                  )}
+
+                  <div className="absolute left-4 top-4 rounded-full bg-white/95 px-3 py-1.5 text-[10px] font-black uppercase tracking-wider text-[#1d704c] shadow">
+                    {project.category}
+                  </div>
                 </div>
 
-                <h3 className="mt-2 text-2xl font-black text-[#173a29]">
-                  Pihra Lithium Project
-                </h3>
+                <div className="flex flex-1 flex-col p-6">
 
-                <p className="mt-3 leading-7 text-[#68736b]">
-                  Field surveying and geospatial work in a mining project
-                  environment.
-                </p>
-              </div>
-            </article>
+                  <h3 className="text-xl font-black leading-tight text-[#173a29]">
+                    {project.title}
+                  </h3>
 
-            <article className="overflow-hidden rounded-[2rem] bg-white shadow-sm ring-1 ring-black/5">
-              <div className="grid grid-cols-2">
-                <img
-                  src="/rgt-field-work/ambadih-copper-01.jpg"
-                  alt="Ambadih copper project"
-                  className="h-64 w-full object-cover"
-                />
+                  <div className="mt-3 flex items-start gap-2 text-xs font-semibold text-[#778078]">
+                    <MapPin
+                      size={14}
+                      className="mt-0.5 shrink-0 text-[#26724e]"
+                    />
 
-                <img
-                  src="/rgt-field-work/ambadih-copper-02.jpg"
-                  alt="Ambadih copper field survey"
-                  className="h-64 w-full object-cover"
-                />
-              </div>
+                    {project.location}
+                  </div>
 
-              <div className="p-7">
-                <div className="text-xs font-black uppercase tracking-[0.18em] text-[#26724e]">
-                  Mining &amp; Survey
+                  <p className="mt-4 line-clamp-3 text-sm leading-6 text-[#68736b]">
+                    {project.scope}
+                  </p>
+
+                  <button
+                    type="button"
+                    onClick={() => setSelectedProject(project)}
+                    className="mt-6 flex items-center gap-2 text-sm font-black text-[#26724e] transition hover:gap-3"
+                  >
+                    View Project
+                    <ArrowRight size={16} />
+                  </button>
                 </div>
+              </article>
+            ))}
 
-                <h3 className="mt-2 text-2xl font-black text-[#173a29]">
-                  Ambadih Copper Project
-                </h3>
+          </div>
 
-                <p className="mt-3 leading-7 text-[#68736b]">
-                  Surveying activity captured during field operations in a
-                  copper project environment.
-                </p>
-              </div>
-            </article>
+          {filteredProjects.length === 0 && (
+            <div className="mt-10 rounded-3xl bg-white p-12 text-center">
+              <p className="font-bold text-[#68736b]">
+                No projects found in this category.
+              </p>
+            </div>
+          )}
 
+          <div className="mt-10 text-center text-sm text-[#778078]">
+            Showing {filteredProjects.length} of {projects.length} documented
+            key projects.
           </div>
         </div>
       </section>
+
+      {/* PROJECT DETAIL MODAL */}
+      {selectedProject && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-[#06140e]/75 px-5 py-8 backdrop-blur-sm"
+          onClick={() => setSelectedProject(null)}
+        >
+          <div
+            className="relative max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-[2rem] bg-white shadow-2xl"
+            onClick={(event) => event.stopPropagation()}
+          >
+
+            <button
+              type="button"
+              onClick={() => setSelectedProject(null)}
+              className="absolute right-5 top-5 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white text-[#173a29] shadow-lg ring-1 ring-black/5 transition hover:bg-[#f0f5ef]"
+              aria-label="Close project"
+            >
+              <X size={20} />
+            </button>
+
+            <div className="bg-[#123e2c] p-8 text-white sm:p-10">
+
+              <div className="text-xs font-black uppercase tracking-[0.2em] text-[#b5e76d]">
+                {selectedProject.category}
+              </div>
+
+              <h3 className="mt-3 pr-10 text-3xl font-black leading-tight sm:text-4xl">
+                {selectedProject.title}
+              </h3>
+
+              <div className="mt-5 flex items-center gap-2 text-sm text-white/65">
+                <MapPin size={16} />
+                {selectedProject.location}
+              </div>
+            </div>
+
+            <div className="grid gap-7 p-8 sm:p-10">
+
+              <div>
+                <div className="text-xs font-black uppercase tracking-[0.2em] text-[#26724e]">
+                  Scope of Work
+                </div>
+
+                <p className="mt-3 leading-8 text-[#5f6b63]">
+                  {selectedProject.scope}
+                </p>
+              </div>
+
+              <div className="grid gap-5 sm:grid-cols-2">
+
+                <div className="rounded-2xl bg-[#f4f7f3] p-5">
+                  <div className="text-xs font-black uppercase tracking-wider text-[#8a948d]">
+                    Client
+                  </div>
+
+                  <p className="mt-2 text-sm font-bold leading-6 text-[#304239]">
+                    {selectedProject.client}
+                  </p>
+                </div>
+
+                <div className="rounded-2xl bg-[#f4f7f3] p-5">
+                  <div className="text-xs font-black uppercase tracking-wider text-[#8a948d]">
+                    Owner
+                  </div>
+
+                  <p className="mt-2 text-sm font-bold leading-6 text-[#304239]">
+                    {selectedProject.owner}
+                  </p>
+                </div>
+
+              </div>
+
+              <a
+                href="#contact"
+                onClick={() => setSelectedProject(null)}
+                className="flex items-center justify-center gap-2 rounded-xl bg-[#1d704c] px-6 py-4 font-black text-white transition hover:bg-[#155a3c]"
+              >
+                Discuss a Similar Project
+                <ArrowRight size={18} />
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* EQUIPMENT */}
       <section
@@ -1284,7 +1686,6 @@ export default function Home() {
           </div>
 
           <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-
             {[
               ["14+", "Years Experience"],
               ["2,000+", "KM Linear Projects"],
@@ -1305,7 +1706,6 @@ export default function Home() {
                 </div>
               </div>
             ))}
-
           </div>
         </div>
       </section>
@@ -1363,7 +1763,6 @@ export default function Home() {
                 capability as part of its geospatial services.
               </p>
             </div>
-
           </div>
         </div>
       </section>
@@ -1383,12 +1782,6 @@ export default function Home() {
             <h2 className="mt-3 text-4xl font-black tracking-tight text-[#173a29] sm:text-5xl">
               Experienced People. Practical Expertise.
             </h2>
-
-            <p className="mt-5 leading-7 text-[#69736c]">
-              RGT is supported by surveyors, engineers, drafting
-              professionals and field teams with extensive project
-              experience.
-            </p>
           </div>
 
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
@@ -1451,11 +1844,6 @@ export default function Home() {
             <h2 className="mt-3 text-4xl font-black tracking-tight text-[#173a29] sm:text-5xl">
               Trusted Project Relationships
             </h2>
-
-            <p className="mx-auto mt-5 max-w-2xl leading-7 text-[#69736c]">
-              Selected organizations and project relationships represented
-              across RGT&apos;s company materials and website.
-            </p>
           </div>
 
           <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6">
@@ -1490,11 +1878,6 @@ export default function Home() {
             <h2 className="mt-3 text-4xl font-black tracking-tight text-[#173a29] sm:text-5xl">
               Frequently Asked Questions
             </h2>
-
-            <p className="mx-auto mt-5 max-w-2xl leading-7 text-[#69736c]">
-              Quick answers to common questions about RGT&apos;s surveying
-              and geospatial services.
-            </p>
           </div>
 
           <div className="mt-12 space-y-3">
@@ -1618,9 +2001,9 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* GOOGLE MAP */}
               <div className="mt-5 overflow-hidden rounded-3xl border border-white/10 bg-white p-2 shadow-2xl">
                 <div className="relative overflow-hidden rounded-2xl">
+
                   <iframe
                     title="RGT Office Location on Google Maps"
                     src="https://www.google.com/maps?q=Opposite+Mohanpur+Church,+Near+Nehru+Yuva+Kendra,+Giridih,+Jharkhand&output=embed"
@@ -1633,7 +2016,7 @@ export default function Home() {
                     href="https://www.google.com/maps/search/?api=1&query=Opposite+Mohanpur+Church,+Near+Nehru+Yuva+Kendra,+Giridih,+Jharkhand"
                     target="_blank"
                     rel="noreferrer"
-                    className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-xl bg-white px-4 py-2.5 text-sm font-black text-[#173a29] shadow-lg transition hover:-translate-y-0.5"
+                    className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-xl bg-white px-4 py-2.5 text-sm font-black text-[#173a29] shadow-lg"
                   >
                     <MapPin
                       size={16}
@@ -1662,10 +2045,6 @@ export default function Home() {
               <h3 className="mt-2 text-3xl font-black text-[#173a29]">
                 Request a Survey
               </h3>
-
-              <p className="mt-2 text-sm text-[#727b74]">
-                Fill in your project information and submit your enquiry.
-              </p>
             </div>
 
             <div className="grid gap-5 sm:grid-cols-2">
@@ -1682,7 +2061,7 @@ export default function Home() {
                     updateForm("name", e.target.value)
                   }
                   placeholder="Your name"
-                  className="w-full rounded-xl border border-black/10 bg-[#f8faf7] px-4 py-3.5 outline-none transition focus:border-[#26724e] focus:ring-2 focus:ring-[#26724e]/10"
+                  className="w-full rounded-xl border border-black/10 bg-[#f8faf7] px-4 py-3.5 outline-none focus:border-[#26724e]"
                 />
               </div>
 
@@ -1699,7 +2078,7 @@ export default function Home() {
                     updateForm("phone", e.target.value)
                   }
                   placeholder="Your phone number"
-                  className="w-full rounded-xl border border-black/10 bg-[#f8faf7] px-4 py-3.5 outline-none transition focus:border-[#26724e] focus:ring-2 focus:ring-[#26724e]/10"
+                  className="w-full rounded-xl border border-black/10 bg-[#f8faf7] px-4 py-3.5 outline-none focus:border-[#26724e]"
                 />
               </div>
 
@@ -1715,7 +2094,7 @@ export default function Home() {
                     updateForm("email", e.target.value)
                   }
                   placeholder="Your email"
-                  className="w-full rounded-xl border border-black/10 bg-[#f8faf7] px-4 py-3.5 outline-none transition focus:border-[#26724e] focus:ring-2 focus:ring-[#26724e]/10"
+                  className="w-full rounded-xl border border-black/10 bg-[#f8faf7] px-4 py-3.5 outline-none focus:border-[#26724e]"
                 />
               </div>
 
@@ -1733,51 +2112,31 @@ export default function Home() {
                       e.target.value
                     )
                   }
-                  className="w-full rounded-xl border border-black/10 bg-[#f8faf7] px-4 py-3.5 outline-none transition focus:border-[#26724e] focus:ring-2 focus:ring-[#26724e]/10"
+                  className="w-full rounded-xl border border-black/10 bg-[#f8faf7] px-4 py-3.5 outline-none focus:border-[#26724e]"
                 >
-                  <option value="">
-                    Select service
-                  </option>
-
-                  <option value="Mining Survey">
-                    Mining Survey
-                  </option>
-
+                  <option value="">Select service</option>
+                  <option value="Mining Survey">Mining Survey</option>
                   <option value="Topographical Survey">
                     Topographical Survey
                   </option>
-
-                  <option value="DGPS Survey">
-                    DGPS Survey
-                  </option>
-
+                  <option value="DGPS Survey">DGPS Survey</option>
                   <option value="Drone / UAV Survey">
                     Drone / UAV Survey
                   </option>
-
-                  <option value="LiDAR Survey">
-                    LiDAR Survey
-                  </option>
-
+                  <option value="LiDAR Survey">LiDAR Survey</option>
                   <option value="Road / Alignment Survey">
                     Road / Alignment Survey
                   </option>
-
                   <option value="GIS Solutions">
                     GIS Solutions
                   </option>
-
                   <option value="Land / Cadastral Survey">
                     Land / Cadastral Survey
                   </option>
-
                   <option value="CAD / Drafting">
                     CAD / Drafting
                   </option>
-
-                  <option value="Other">
-                    Other
-                  </option>
+                  <option value="Other">Other</option>
                 </select>
               </div>
             </div>
@@ -1793,7 +2152,7 @@ export default function Home() {
                   updateForm("location", e.target.value)
                 }
                 placeholder="City / District / State"
-                className="w-full rounded-xl border border-black/10 bg-[#f8faf7] px-4 py-3.5 outline-none transition focus:border-[#26724e] focus:ring-2 focus:ring-[#26724e]/10"
+                className="w-full rounded-xl border border-black/10 bg-[#f8faf7] px-4 py-3.5 outline-none focus:border-[#26724e]"
               />
             </div>
 
@@ -1810,7 +2169,7 @@ export default function Home() {
                 }
                 placeholder="Tell us about the project, area, required survey, timeline, etc."
                 rows={6}
-                className="w-full resize-none rounded-xl border border-black/10 bg-[#f8faf7] px-4 py-3.5 outline-none transition focus:border-[#26724e] focus:ring-2 focus:ring-[#26724e]/10"
+                className="w-full resize-none rounded-xl border border-black/10 bg-[#f8faf7] px-4 py-3.5 outline-none focus:border-[#26724e]"
               />
             </div>
 
@@ -1829,7 +2188,7 @@ export default function Home() {
             <button
               type="submit"
               disabled={sending}
-              className="mt-6 flex w-full items-center justify-center gap-2 rounded-xl bg-[#1d704c] px-6 py-4 font-black text-white transition hover:bg-[#155a3c] disabled:cursor-not-allowed disabled:opacity-60"
+              className="mt-6 flex w-full items-center justify-center gap-2 rounded-xl bg-[#1d704c] px-6 py-4 font-black text-white transition hover:bg-[#155a3c] disabled:opacity-60"
             >
               {sending ? (
                 <>
