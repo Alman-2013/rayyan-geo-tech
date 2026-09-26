@@ -16,6 +16,7 @@ export default async function DashboardPage() {
   return (
     <DashboardClient
       user={{
+        id: user.id,
         email: user.email ?? "",
         full_name: user.user_metadata?.full_name ?? "RGT Customer",
       }}
