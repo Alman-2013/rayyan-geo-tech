@@ -1136,8 +1136,17 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="text-xs text-white/40">
-            © {new Date().getFullYear()} Rayyan Geo Tech. All Rights Reserved.
+          <div className="flex flex-col items-end gap-2 text-right">
+            <div className="text-xs text-white/40">
+              © {new Date().getFullYear()} Rayyan Geo Tech. All Rights Reserved.
+            </div>
+
+            <div className="text-xs text-white/40">
+              Made by{" "}
+              <span className="font-semibold text-white/70">
+                Alman Web Studio
+              </span>
+            </div>
           </div>
         </div>
       </footer>
