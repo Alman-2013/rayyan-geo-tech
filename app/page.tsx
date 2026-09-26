@@ -1,6 +1,7 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
+import Link from "next/link";
 import {
   ArrowRight,
   CheckCircle2,
@@ -27,6 +28,7 @@ import {
   Users,
   X,
 } from "lucide-react";
+import { createClient } from "@/lib/supabase/client";
 
 const PHONE = "089 69 34 1822";
 const EMAIL = "rgtdronesurvey@gmail.com";
@@ -610,6 +612,45 @@ export default function Home() {
   const [projectFilter, setProjectFilter] = useState("All");
   const [selectedProject, setSelectedProject] =
     useState<Project | null>(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [loggingOut, setLoggingOut] = useState(false);
+
+  useEffect(() => {
+    let mounted = true;
+
+    async function checkSession() {
+      try {
+        const supabase = createClient();
+        const { data } = await supabase.auth.getUser();
+
+        if (mounted) {
+          setIsLoggedIn(Boolean(data.user));
+        }
+      } catch {
+        if (mounted) {
+          setIsLoggedIn(false);
+        }
+      }
+    }
+
+    checkSession();
+
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
+  async function handleLogout() {
+    setLoggingOut(true);
+
+    try {
+      const supabase = createClient();
+      await supabase.auth.signOut();
+      window.location.href = "/login";
+    } catch {
+      setLoggingOut(false);
+    }
+  }
 
   const [form, setForm] = useState({
     name: "",
@@ -820,21 +861,50 @@ export default function Home() {
             </div>
           </nav>
 
-          <a
-            href="#contact"
-            className="hidden shrink-0 items-center gap-2 rounded-full bg-[#1d704c] px-5 py-3.5 text-sm font-black text-white shadow-[0_8px_25px_rgba(29,112,76,0.18)] transition hover:-translate-y-0.5 hover:bg-[#155a3c] xl:flex"
-          >
-            Request a Survey
-            <ArrowRight size={16} />
-          </a>
+          <div className="hidden items-center gap-2 xl:flex">
+            {isLoggedIn && (
+              <button
+                type="button"
+                onClick={handleLogout}
+                disabled={loggingOut}
+                className="flex shrink-0 items-center gap-2 rounded-full border border-[#d8e1da] bg-white px-5 py-3.5 text-sm font-black text-black transition hover:border-[#1d704c] hover:bg-[#f1f6f1] hover:text-[#1d704c] disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                {loggingOut ? "Logging out..." : "Logout"}
+              </button>
+            )}
 
-          <button
-            onClick={() => setMenuOpen((value) => !value)}
-            className="rounded-xl border border-[#dfe5df] bg-[#f7f9f6] p-2.5 text-[#173a29] xl:hidden"
-            aria-label="Open menu"
-          >
-            {menuOpen ? <X size={23} /> : <Menu size={23} />}
-          </button>
+            <a
+              href="#contact"
+              className="flex shrink-0 items-center gap-2 rounded-full bg-[#1d704c] px-5 py-3.5 text-sm font-black text-white shadow-[0_8px_25px_rgba(29,112,76,0.18)] transition hover:-translate-y-0.5 hover:bg-[#155a3c]"
+            >
+              Request a Survey
+              <ArrowRight size={16} />
+            </a>
+          </div>
+
+          <div className="flex items-center gap-2 xl:hidden">
+            {isLoggedIn && (
+              <button
+                type="button"
+                onClick={handleLogout}
+                disabled={loggingOut}
+                aria-label="Logout"
+                className="flex h-12 items-center justify-center rounded-xl border border-[#dfe5df] bg-white px-3.5 text-[#173a29] shadow-sm transition hover:bg-[#f1f6f1] disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                <span className="text-sm font-black">
+                  {loggingOut ? "..." : "Logout"}
+                </span>
+              </button>
+            )}
+
+            <button
+              onClick={() => setMenuOpen((value) => !value)}
+              className="flex h-12 w-12 items-center justify-center rounded-xl border border-[#dfe5df] bg-[#f7f9f6] text-[#173a29]"
+              aria-label="Open menu"
+            >
+              {menuOpen ? <X size={23} /> : <Menu size={23} />}
+            </button>
+          </div>
         </div>
 
         {menuOpen && (
@@ -888,10 +958,32 @@ export default function Home() {
                 </div>
               )}
 
+              {isLoggedIn ? (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setMenuOpen(false);
+                    handleLogout();
+                  }}
+                  disabled={loggingOut}
+                  className="mt-4 flex w-full items-center justify-center rounded-xl border border-[#d8e1da] bg-white px-5 py-4 font-black text-black transition hover:bg-[#f1f6f1] disabled:cursor-not-allowed disabled:opacity-60"
+                >
+                  {loggingOut ? "Logging out..." : "Logout"}
+                </button>
+              ) : (
+                <Link
+                  href="/login"
+                  onClick={() => setMenuOpen(false)}
+                  className="mt-4 flex items-center justify-center rounded-xl border border-[#d8e1da] bg-white px-5 py-4 font-black text-black transition hover:bg-[#f1f6f1]"
+                >
+                  Customer Login
+                </Link>
+              )}
+
               <a
                 href="#contact"
                 onClick={() => setMenuOpen(false)}
-                className="mt-4 flex items-center justify-center gap-2 rounded-xl bg-[#1d704c] px-5 py-4 font-black text-white"
+                className="mt-3 flex items-center justify-center gap-2 rounded-xl bg-[#1d704c] px-5 py-4 font-black text-white"
               >
                 Request a Survey
                 <ArrowRight size={17} />
@@ -1436,12 +1528,19 @@ export default function Home() {
                       className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                     />
                   ) : (
-                    <div className="absolute inset-0 flex items-center justify-center bg-white">
-                      <img
-                        src="/rgt-logo.png"
-                        alt="Rayyan Geo Tech"
-                        className="h-28 w-auto max-w-[75%] object-contain"
-                      />
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="absolute inset-0 bg-gradient-to-br from-[#123e2c] via-[#1d704c] to-[#092519]" />
+
+                      <div className="relative text-center text-white">
+                        <Map
+                          size={42}
+                          className="mx-auto text-[#b5e76d]"
+                        />
+
+                        <div className="mt-3 text-xs font-black uppercase tracking-[0.2em] text-white/50">
+                          RGT Project
+                        </div>
+                      </div>
                     </div>
                   )}
 
